@@ -1,4 +1,4 @@
-FROM alpine:latest
+FROM alpine:3.3
 
 
 ENV LDAP_SERVER_NAME 'ADOP LDAP'
@@ -10,8 +10,10 @@ ENV LDAP_SERVER_BASE_DN 'dc=ldap,dc=example,dc=com'
 RUN apk update \
     && apk add bash nginx ca-certificates \
     php-fpm php-json php-zlib php-xml php-pdo php-phar php-openssl \
-    php-pdo_mysql php-mysqli \
-    php-gd php-iconv php-mcrypt php-ldap phpldapadmin
+     php-pdo_mysql php-mysqli \
+    php-gd php-iconv php-ldap phpldapadmin
+
+#RUN apk add php7-fpm phpldapadmin
 
 # fix php-fpm "Error relocating /usr/bin/php-fpm: __flt_rounds: symbol not found" bug
 RUN apk add -u musl
